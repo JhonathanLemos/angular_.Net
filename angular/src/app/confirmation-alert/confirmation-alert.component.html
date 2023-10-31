@@ -1,0 +1,14 @@
+<div  class="confirmation-alert" [style.background-color]="cor">
+    <h2>{{ mensagem }}</h2>
+    <h4>{{ subMensagem }}</h4>
+    <div class="icon">
+
+      
+      <mat-icon class="icon" color="warn">warning</mat-icon>
+    </div>
+    <div class="botoes">
+      <button mat-stroked-button color="primary" (click)="onConfirm()">Confirmar</button>
+      <button mat-stroked-button color="warn" (click)="onCancel()">Cancelar</button>
+    </div>
+  </div>
+  

@@ -1,0 +1,21 @@
+<div class="container">
+    <h2>{{mensagem}}</h2>
+    <div class="formulario">
+        <form [formGroup]="formulario">
+            <mat-form-field>
+                <mat-label>Nome</mat-label>
+                <input matInput formControlName="nomeProduto" placeholder="Nome do produto">
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Cliente</mat-label>
+                <mat-select formControlName="customerId">
+                    <mat-option *ngFor="let cliente of clientes" [value]="cliente.id">{{ cliente.nomeCliente }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <button mat-stroked-button color="primary" (click)="salvarFormulario()">Enviar</button>
+            <button mat-stroked-button color="warn" (click)="fechar()">Fechar</button>
+        </form>
+    </div>
+</div>

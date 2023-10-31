@@ -1,0 +1,17 @@
+.container{
+padding: 20px;
+}
+
+.formulario{
+    display: flex;
+    justify-content: flex-end;
+}
+
+mat-form-field{
+    width: 500px;
+}
+
+button{
+    margin: 10px;
+    margin-left: 0;
+}

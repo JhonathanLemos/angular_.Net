@@ -1,0 +1,19 @@
+<div class="container">
+
+    <div class="form">
+
+        <form [formGroup]="formulario">
+            <div>
+                Cadastro de Cliente
+            </div>
+            <mat-form-field>
+                <mat-label>Nome</mat-label>
+                <input matInput formControlName="nomeCliente" placeholder="Nome do cliente">
+            </mat-form-field>
+
+            <button mat-stroked-button color="primary" (click)="salvarFormulario()">Salvar</button>
+            <button mat-stroked-button color="warn" routerLink="/clientes">Voltar</button>
+
+        </form>
+    </div>
+</div>

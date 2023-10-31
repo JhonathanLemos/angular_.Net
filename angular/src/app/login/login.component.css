@@ -1,0 +1,75 @@
+.background {
+    background-color: #F2F2F2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    /* Coloca o background atrás do conteúdo */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.formulario {
+    background-color: white !important;
+    width: 400px;
+    padding: 20px;
+    border: solid 2px white;
+    border-radius: 5px;
+}
+
+
+.text {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+mat-form-field {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+button {
+    width: 100%;
+    background-color: #071422;
+    border: none;
+    color: white;
+    height: 35px;
+    border-radius: 15px;
+}
+
+p {
+    text-align: center;
+    cursor: pointer;
+}
+
+p:hover {
+    color: #3a3d41;
+}
+
+
+.invalid-button {
+    background-color: #3a3d41; /* Cor de fundo vermelha para botão inválido */
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+  .margin-form {
+    width: 100%;
+    margin-bottom: 45px;
+}
+
+
+mat-hint{
+    color: red;
+    text-align: justify;
+}

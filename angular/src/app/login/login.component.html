@@ -1,0 +1,35 @@
+<div class="background">
+    <div class="container">
+        <div class="formulario">
+            <app-alert></app-alert>
+            <!-- Seu código existente aqui -->
+            <form [formGroup]="formulario">
+                <div *ngIf="validateRoute()" class="text">
+                    Login
+                </div>
+                <div *ngIf="!validateRoute()" class="text">
+                    Registre-se
+                </div>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Login</mat-label>
+                    <input matInput formControlName="userName" placeholder="Insira seu login">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" [ngClass]="{ 'margin-form': !validateRoute() && formulario.invalid }">
+                    <mat-label>Senha</mat-label>
+                    <input matInput formControlName="password" placeholder="Insira sua senha">
+                    <mat-hint  *ngIf="!validateRoute() && formulario.invalid">A senha deve conter pelo menos 8 caracteres e incluir pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial</mat-hint>
+                </mat-form-field>
+
+                <button [ngClass]="{ 'invalid-button': formulario.invalid}" *ngIf="!validateRoute()"
+                    [disabled]="formulario.invalid" (click)="register()">Cadastrar</button>
+                <button [ngClass]="{ 'invalid-button': formulario.invalid}" *ngIf="validateRoute()"
+                    [disabled]="formulario.invalid" (click)="login()">Entrar</button>
+
+                <p *ngIf="!validateRoute()" routerLink="/login">Acessar</p>
+                <p *ngIf="validateRoute()" routerLink="/register">Registre-se</p>
+            </form>
+        </div>
+    </div>
+</div>

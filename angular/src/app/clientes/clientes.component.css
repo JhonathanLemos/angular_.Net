@@ -1,0 +1,32 @@
+.div-table {
+    width: 60%;
+    margin: auto;
+    padding: 10px;
+}
+
+button {
+    margin: 25px;
+    margin-left: 0;
+    height: 50px !important;
+}
+
+mat-form-field {
+    max-height: 50px !important;
+    width: 350px;
+}
+
+mat-hint {
+    font-size: 12px;
+    margin: 0;
+    margin-left: -10px;
+}
+
+.top-form{
+    display: flex;
+    width: 100%;
+}
+
+.search-field {
+    margin-top: 20px;
+    margin-left: auto;
+}

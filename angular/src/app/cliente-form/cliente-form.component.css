@@ -1,0 +1,27 @@
+.container{
+    font-size: 25px;
+    width: 100%;
+    display: flex;
+}
+
+mat-form-field{
+    width: 100%;
+    margin-top: 20px;
+}
+
+form{
+    width: 60%;
+    margin: auto;
+}
+
+.form{
+    margin: auto;
+    margin-top: 20px;
+    width: 50%;
+    display: flex;
+}
+
+button{
+    margin: 5px;
+    margin-left: 0;
+}
