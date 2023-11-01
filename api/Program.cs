@@ -10,6 +10,7 @@ using NetCoreAPI.Models;
 using NetCoreAPI.Repositories;
 using System;
 using System.Globalization;
+using System.Security;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,6 +24,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+
+AuthorizationSetup.InitializeRolesAndPermissions(builder.Services.BuildServiceProvider());
+
 builder.Services.AddAuthorization(options =>
 {
     options.FallbackPolicy = new AuthorizationPolicyBuilder()

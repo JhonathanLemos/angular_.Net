@@ -59,7 +59,7 @@ namespace NetCoreAPI.Controllers
                    new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
                 Audience = _configuration["JwtBearerTokenSettings:Audience"],
                 Issuer = _configuration["JwtBearerTokenSettings:Issuer"],
-                Expires = DateTime.UtcNow.AddMinutes(2)
+                Expires = DateTime.UtcNow.AddMinutes(10)
             };
             var tokenHandler = new JwtSecurityTokenHandler();
             var token = tokenHandler.CreateToken(tokenDescriptor);
