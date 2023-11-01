@@ -44,11 +44,13 @@ button {
     color: white;
     height: 35px;
     border-radius: 15px;
+    cursor: pointer;
 }
 
 p {
     text-align: center;
     cursor: pointer;
+    font-size: 13px;
 }
 
 p:hover {
