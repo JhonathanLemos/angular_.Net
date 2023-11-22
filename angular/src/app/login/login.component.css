@@ -37,7 +37,7 @@ mat-form-field {
     margin-bottom: 15px;
 }
 
-button {
+.button {
     width: 100%;
     background-color: #071422;
     border: none;

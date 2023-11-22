@@ -25,6 +25,8 @@ import { AuthGuard } from './guard/auth.guard';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { AlertComponent } from './alert/alert.component';
 import {MatCardModule} from '@angular/material/card';
+import { ValidationCodeModalComponent } from './validation-code-modal/validation-code-modal.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import {MatCardModule} from '@angular/material/card';
     LoginComponent,
     FormularioComponent,
     ProdutoComponent,
-    AlertComponent
+    AlertComponent,
+    ValidationCodeModalComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

@@ -1,8 +1,15 @@
-mat-card{
-    background-color: #f44336;
+mat-card {
     margin-bottom: 5px;
 }
 
-mat-card-content{
-color: white;
+mat-card-content {
+    color: white;
+}
+
+.error {
+    background-color: #f44336;
+}
+
+.success {
+    background-color: rgb(84, 185, 84);
 }

@@ -27,27 +27,34 @@ public static class AuthorizationSetup
                     PermissionDefinitions.CustomerPermissions.Update,
                     PermissionDefinitions.CustomerPermissions.Delete,
                 }),
+                ("Company", new List<string>
+                {
+                    PermissionDefinitions.CustomerPermissions.Create,
+                    PermissionDefinitions.CustomerPermissions.Read,
+                    PermissionDefinitions.CustomerPermissions.Update,
+                    PermissionDefinitions.CustomerPermissions.Delete,
+                }),
             };
 
             foreach (var (roleName, permissions) in rolesAndPermissions)
             {
-                if (!roleManager.RoleExistsAsync(roleName).Result)
-                {
-                    var role = new IdentityRole(roleName);
-                    roleManager.CreateAsync(role).Wait();
+                //if (!roleManager.RoleExistsAsync(roleName).Result)
+                //{
+                //    var role = new IdentityRole(roleName);
+                //    roleManager.CreateAsync(role).Wait();
 
-                    var existingRole = roleManager.FindByNameAsync(roleName).Result;
+                //    var existingRole = roleManager.FindByNameAsync(roleName).Result;
 
-                    foreach (var permission in permissions)
-                    {
-                        dbContext.RoleClaims.AddAsync(new IdentityRoleClaim<string>
-                        {
-                            RoleId = existingRole.Id,
-                            ClaimType = "permission",
-                            ClaimValue = permission
-                        });
-                    }
-                }
+                //    foreach (var permission in permissions)
+                //    {
+                //        dbContext.RoleClaims.AddAsync(new IdentityRoleClaim<string>
+                //        {
+                //            RoleId = existingRole.Id,
+                //            ClaimType = "permission",
+                //            ClaimValue = permission
+                //        });
+                //    }
+                //}
             }
 
             dbContext.SaveChangesAsync().Wait();

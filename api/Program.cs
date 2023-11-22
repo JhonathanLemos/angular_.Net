@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.IdentityModel.Tokens;
+using MyApi.Identidade;
 using NetCoreAPI;
 using NetCoreAPI.Dtos;
 using NetCoreAPI.Models;
@@ -48,7 +50,6 @@ builder.Services.AddAuthentication(x =>
         ValidateIssuer = true,
         ValidateLifetime = true,
         ValidateIssuerSigningKey = true,
-        ClockSkew = TimeSpan.Zero,
         ValidIssuer = builder.Configuration["JwtBearerTokenSettings:Issuer"],
         ValidAudience = builder.Configuration["JwtBearerTokenSettings:Audience"],
         IssuerSigningKey = new SymmetricSecurityKey(
@@ -58,8 +59,13 @@ builder.Services.AddAuthentication(x =>
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<IRepository<Product>, Repository<Product>>();
 builder.Services.AddScoped<IRepository<Customer>, Repository<Customer>>();
-var app = builder.Build();
+builder.Services.AddScoped<IRepository<EmailCode>, Repository<EmailCode>>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IdentidadeService>();
+builder.Services.AddScoped<IMemoryCache, MemoryCache>();
 
+var app = builder.Build();
+var inactivityTimeout = TimeSpan.FromMinutes(1);
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -86,6 +92,7 @@ app.UseCors(options =>
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
+//app.UseMiddleware<InactivityTimeoutMiddleware>(inactivityTimeout);
 
 app.MapControllers();
 

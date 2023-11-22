@@ -1,0 +1,11 @@
+<div class="container">
+  <form [formGroup]="formulario">
+    <app-alert></app-alert>
+    <mat-form-field>
+      <mat-label>Código de Validação</mat-label>
+      <input matInput formControlName="code" maxlength="6">
+    </mat-form-field>
+
+    <button class="button" [disabled]="formulario.invalid" (click)="verifyCode()">Entrar</button>
+  </form>
+</div>

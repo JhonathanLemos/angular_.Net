@@ -10,21 +10,28 @@ import { Router } from '@angular/router';
 export class AuthService {
   private apiUrl = 'https://localhost:7136/api/login'; // Substitua pela URL da sua API .NET
 
-  constructor(private http: HttpClient, private route: Router) { }
+  constructor(private http: HttpClient, private route: Router) {
+    localStorage.clear();
+  }
 
 
 
   login(login: []): Observable<Token> {
     return this.http.post<Token>(this.apiUrl, login).pipe(
       map((res) => {
+        debugger
+        if (res.value == "EmailNotValidated")
+          return res;
+        
         localStorage.setItem('token', res.value.token);
         localStorage.setItem('isAuthenticated', 'true');
         return res;
       }),
       catchError((error: any) => {
+        debugger
         // Aqui você pode lidar com o erro como desejar, por exemplo, logá-lo ou notificar o usuário
         console.error('Ocorreu um erro durante o login:', error);
-        return throwError(error); // Isso reenviará o erro para quem chamar o método
+        return throwError(() => error); // Isso reenviará o erro para quem chamar o método
       })
     );
   }
@@ -39,6 +46,9 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/register`, login)
   }
 
+  generateCode(login: []) {
+    return this.http.post(`${this.apiUrl}/GenCode`, login)
+  }
   setToken(token: string): void {
     localStorage.setItem('token', token);
   }

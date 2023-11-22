@@ -30,6 +30,7 @@ export class ProdutoComponent implements OnInit {
 
   ngOnInit() {
     this.getAllProdutos();
+    
   }
 
 

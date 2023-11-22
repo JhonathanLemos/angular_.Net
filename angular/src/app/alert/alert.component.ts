@@ -8,9 +8,11 @@ import { Component, Input } from '@angular/core';
 export class AlertComponent {
   message: string = '';
   showAlert: boolean = false;
+  alertColor: string = 'primary'; 
 
-  showCustomAlert(message : any) {
+  showCustomAlert(message : any, color: string) {
     this.message = message;
+    this.alertColor = color;
     this.showAlert = true;
     setTimeout(() => {
       this.showAlert = false;

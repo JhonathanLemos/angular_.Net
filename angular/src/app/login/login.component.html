@@ -11,20 +11,34 @@
                     Registre-se
                 </div>
 
-                <mat-form-field appearance="outline">
+                <mat-form-field appearance="outline" *ngIf="!validateRoute()">
                     <mat-label>Login</mat-label>
                     <input matInput formControlName="userName" placeholder="Insira seu login">
+                    <mat-hint *ngIf="!validateRoute() && formulario.get('userName')?.invalid">Seu login deve conter no
+                        mínimo 4 caracteres!</mat-hint>
+                </mat-form-field>
+
+                <mat-form-field  appearance="outline">
+                    <mat-label>E-mail</mat-label>
+                    <input matInput formControlName="email" placeholder="Insira seu email">
+                    <mat-hint *ngIf="formulario.get('email')?.invalid">Insira um e-mail válido</mat-hint>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" [ngClass]="{ 'margin-form': !validateRoute() && formulario.invalid }">
                     <mat-label>Senha</mat-label>
-                    <input matInput formControlName="password" placeholder="Insira sua senha">
-                    <mat-hint  *ngIf="!validateRoute() && formulario.invalid">A senha deve conter pelo menos 8 caracteres e incluir pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial</mat-hint>
-                </mat-form-field>
+                    <input [type]="input_visibility ? 'password' : 'text'" matInput formControlName="password" placeholder="Insira sua senha">
+                    <button mat-icon-button matSuffix (click)="changeInput()">
+                      <mat-icon *ngIf="input_visibility">visibility</mat-icon>
+                      <mat-icon *ngIf="!input_visibility">visibility_off</mat-icon>
+                    </button>
+                    <mat-hint *ngIf="!validateRoute() && formulario.get('password')?.invalid">A senha deve conter pelo
+                        menos 8 caracteres e incluir pelo menos uma letra maiúscula, uma letra minúscula, um número e um
+                        caractere especial</mat-hint>
+                  </mat-form-field>
 
-                <button [ngClass]="{ 'invalid-button': formulario.invalid}" *ngIf="!validateRoute()"
+                <button class="button" [ngClass]="{ 'invalid-button': formulario.invalid}" *ngIf="!validateRoute()"
                     [disabled]="formulario.invalid" (click)="register()">Cadastrar</button>
-                <button [ngClass]="{ 'invalid-button': formulario.invalid}" *ngIf="validateRoute()"
+                <button class="button" [ngClass]="{ 'invalid-button': formulario.invalid}" *ngIf="validateRoute()"
                     [disabled]="formulario.invalid" (click)="login()">Entrar</button>
 
                 <p *ngIf="!validateRoute()" routerLink="/login">Acessar</p>

@@ -15,8 +15,8 @@ namespace NetCoreAPI.Controllers;
 public class UserController : ControllerBase
 {
     private readonly IMapper _mapper;
-    private readonly IRepository<User> _repository;
-    public UserController(IRepository<User> repository, IMapper mapper)
+    private readonly UserRepository _repository;
+    public UserController(UserRepository repository, IMapper mapper)
     {
         _repository = repository;
         _mapper = mapper;
@@ -46,7 +46,7 @@ public class UserController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> Get(int id)
+    public async Task<IActionResult> Get(string id)
     {
         var result = await _repository.GetById(id);
         if (result == null)
@@ -63,7 +63,7 @@ public class UserController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Put(int id, [FromBody] UserDto userDto)
+    public async Task<IActionResult> Put(string id, [FromBody] UserDto userDto)
     {
         var entity = await _repository.GetById(id);
         if (entity == null)
@@ -74,7 +74,7 @@ public class UserController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> Delete(int id)
+    public async Task<IActionResult> Delete(string id)
     {
         var result = await _repository.GetById(id);
         if (result == null)
